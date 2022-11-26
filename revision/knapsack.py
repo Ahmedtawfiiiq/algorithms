@@ -13,12 +13,13 @@ def knapSack(v, w, n, m):
 
     for i in range(1, n+1):
         for j in range(1, m+1):
-            if w[i-1] > j:
-                c[i][j] = c[i-1][j]
+            if j >= w[i-1]:
+                c[i][j] = max(c[i-1][j], v[i-1] + c[i-1][j-w[i-1]])
             else:
-                c[i][j] = max(c[i-1][j-w[i-1]] + v[i-1], c[i-1][j])
+                c[i][j] = c[i-1][j]
 
     print(c)
+    print(c[n][m])
 
     i = n
     j = m
@@ -27,7 +28,7 @@ def knapSack(v, w, n, m):
 
     while i > 0 and j > 0:
         if c[i][j] != c[i-1][j]:
-            result.append(i)
+            result.insert(0, v[i-1])
             i -= 1
             j -= w[i]
         else:
