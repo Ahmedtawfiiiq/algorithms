@@ -9,6 +9,9 @@ def fibonacci(n):
 # dynamic programming top down
 def fibonacciTopDown(n):
     # for n >= 2
+
+    memorized = [0]*50
+
     if n == 0 or n == 1:
         return n
     if memorized[n] == 0:
@@ -18,15 +21,22 @@ def fibonacciTopDown(n):
 
 # dynamic programming bottom up
 def fibonacciBottomUp(n):
-    memorized[0] = 0
-    memorized[1] = 1
-    for i in range(2, n + 1):
-        memorized[i] = memorized[i - 1] + memorized[i - 2]
-    return memorized[n]
+    if n == 0 or n == 1:
+        return n
+
+    a = 0
+    b = 1
+
+    i = 2
+    while i <= n:
+        temp = a+b
+        a = b
+        b = temp
+        i += 1
+    return b
 
 
-memorized = [0]*50
-n = 5
+n = 10
 # result = fibonacci(n)
 # result = fibonacciTopDown(n)
 result = fibonacciBottomUp(n)
