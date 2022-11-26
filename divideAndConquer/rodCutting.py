@@ -19,15 +19,16 @@ def extendedRodCuttingBottomUp(p, n):
         c[i] = q
 
     print(c)
+    print(s)
+    print("max possible revenue:", c[n])
     cuts = []
     while n > 0:
         cuts.append(s[n])
         n -= s[n]
 
-    print(cuts)
+    print("cuts:", cuts)
 
 
-# for bottom up
 p = [0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30]
 n = 8
 
