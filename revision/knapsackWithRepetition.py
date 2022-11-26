@@ -2,12 +2,13 @@ def knapsack(v, w, n, x):
 
     dp = [0]*(x+1)
 
-    for i in range(x + 1):
+    for i in range(1, x + 1):
         for j in range(n):
-            if (w[j] <= i):
-                dp[i] = max(dp[i], dp[i - w[j]] + v[j])
+            if i >= w[j]:
+                dp[i] = max(dp[i], v[j] + dp[i - w[j]])
 
     print(dp)
+    print(dp[x])
 
 
 v = [33, 20, 5, 25]
